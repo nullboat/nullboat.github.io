@@ -1,23 +1,135 @@
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta property="og:title" content="nil.dev's site" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://nullify.rest" />
-<meta property="og:image" content="https://nullify.rest/img/thumb.jpg" />
-<meta property="og:description" content="hi owo uwu" />
-<meta name="theme-color" content="#0557e6">
-        <title>nil.dev</title>
-        <style>
-            body { background-color: black; color: white; }
-            h1 { font-family: Montserrat, sans-serif; }
-            .container { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; }
-        </style>
-    </head>
-    <body>
-       <div class="container">
-          <h1>nil.dev - WIP</h1>
-       </div>
-    </body>
-</html>
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="nil.dev's site" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nullify.rest" />
+    <meta property="og:image" content="https://nullify.rest/img/thumb.jpg" />
+    <meta property="og:description" content="About Me" />
+    <meta name="theme-color" content="#0557e6">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <style>
+        #dimScreen
+        {
+            position:fixed;
+            padding:0;
+            margin:0;
+
+            top:0;
+            left:0;
+
+            width: 100%;
+            height: 100%;
+            background:rgba(255,255,255,0.5);
+            text-align: center;
+        }
+        #about {
+            position: fixed;
+            width: 40%;
+            text-align: center;
+            top: 25%;
+            left: 50%;
+            padding: 20px;
+            transform: translate(-50%, 0);
+        }
+        p, span {
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+        }
+        a {
+            color: rgb(38, 77, 248);
+            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+        }
+        #name {
+            color: rgb(38, 77, 248);
+            cursor: grab;
+        }
+    </style>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+</head>
+
+<body style="background-color: black;">
+    <div id="player"></div>
+    <div id="dimScreen">
+        <div id="about">
+            <img id="aboutimg" src="https://cataas.com/c" style="border-radius: 5%; max-width: 350px; max-height: 350px;"><br>
+            <p>I am <span id="name">@nil.dev</span> - junior programmer who knows JavaScript, C#, Java, React, TypeScript and Lua.<br>
+Projects:<br>
+<a href="https://i.nullify.rest">File Sharer </a><a href="https://i2.nullify.rest">(mirror)</a><br>
+Contact:<br>
+<a href="https://discord.com/users/876953124546420830">Discord - @nil.dev</a>
+            </p>
+        </div>
+    </div>
+    <p id="start">Please start the video.</p>
+
+    <script>
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: document.documentElement.clientHeight - 50,
+                width: document.documentElement.clientWidth - 50,
+                videoId: 'TN25ghkfgQA',
+                playerVars: {
+                    'playsinline': 1
+                },
+                events: {
+                    'onReady': onPlayerReady
+                },
+                playerVars: { 'autoplay': 1, 'controls': 0, 'playlist': "TN25ghkfgQA", 'loop': 1 }
+            });
+        }
+        $("#name").draggable({
+            cursor: "grabbing"
+        })
+        var loadingimg = true
+        $("#aboutimg").click(() => {
+            if (!loadingimg) {
+                $("#aboutimg").attr("src", "https://cataas.com/c?" + Date.now())
+                $("#aboutimg").css("cursor", "wait")
+                loadingimg = true
+            } else {
+                $("#aboutimg").css("cursor", "not-allowed")
+            }
+        })
+        $("#aboutimg").on("load", () => {
+            $("#aboutimg").css("cursor", "pointer")
+            loadingimg = false
+        })
+        $("#dimScreen").fadeOut()
+        function onPlayerReady() {
+            console.log("ready to play")
+        }
+        var shown = false;
+        var startText = false;
+        var chkInt = setInterval(() => {
+            if (player.getCurrentTime() > 0.1 && !startText) {
+                $("#start").fadeOut()
+                startText = true
+            }
+            if (player.getCurrentTime() > 2.8 && !shown) {
+                console.log("show")
+                $("#dimScreen").fadeIn()
+                shown = true
+            }
+            if (shown && startText) {
+                clearInterval(chkInt)
+                console.log("Bye")
+            }
+        }, 50)
+    </script>
+</body>
+
+</html>
