@@ -82,12 +82,11 @@ Contact:<br>
                 width: document.documentElement.clientWidth - 50,
                 videoId: 'TN25ghkfgQA',
                 playerVars: {
-                    'playsinline': 1
+                    'playsinline': 1, 'autoplay': 1, 'controls': 0, 'playlist': "TN25ghkfgQA", 'loop': 1, 'fs': 0
                 },
                 events: {
                     'onReady': onPlayerReady
-                },
-                playerVars: { 'autoplay': 1, 'controls': 0, 'playlist': "TN25ghkfgQA", 'loop': 1 }
+                }
             });
         }
         $("#name").draggable({
