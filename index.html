@@ -57,7 +57,7 @@
 
 <body style="background-color: black;">
     <div id="player"></div>
-    <div id="dimScreen">
+    <div id="dimScreen" style="display: none;">
         <div id="about">
             <img id="aboutimg" src="https://cataas.com/c" style="border-radius: 5%; max-width: 350px; max-height: 350px;"><br>
             <p>I am <span id="name" style="cursor: grab;">@nil.dev</span> - junior programmer who knows JavaScript, C#, Java, React, TypeScript and Lua.<br>
@@ -107,7 +107,6 @@ Contact:<br>
             $("#aboutimg").css("cursor", "pointer")
             loadingimg = false
         })
-        $("#dimScreen").fadeOut()
         function onPlayerReady() {
             console.log("ready to play")
         }
