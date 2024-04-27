@@ -7,7 +7,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://nullify.rest" />
     <meta property="og:image" content="https://nullify.rest/img/thumb.jpg" />
-    <meta property="og:description" content="Goodbye, Me" />
+    <meta property="og:description" content="About Me" />
     <meta name="theme-color" content="#0557e6">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,12 +60,15 @@
     <div id="dimScreen" style="display: none;">
         <div id="about">
             <img id="aboutimg" src="https://cataas.com/cat" style="border-radius: 5%; max-width: 350px; max-height: 350px;"><br>
-            <p>I am <span id="name" style="cursor: grab;">@nil.dev</span> - signing off.<br>
-Thanks for all the memories, guys! I really do appreciate you all.<br>
-No proper leave note as I'm too tired to make one.<br>
-I doubt you'll hear from me any time soon. Maybe never.<br>
-If you found this, please do not share it around. Let it<br>
-be "hidden", for as long as it can be.
+            <p>I am <span id="name" style="cursor: grab;">@nil.dev</span> - junior programmer who knows JavaScript, C#, Java, React, TypeScript, Python and Lua.<br>
+Projects:<br>
+<a href="https://i.nullify.rest">File Sharer </a><a href="https://i2.nullify.rest">(mirror)</a><br>
+<a href="https://chat.nullify.rest">Anonymous private chat without the need of an account</a><br>
+
+Contact:<br>
+<a href="https://discord.com/users/1192629263468343369">Discord - @nil.dev</a><br>
+<a href="https://x.com/nildotdev">Twitter - @nildotdev</a>
+            </p>
         </div>
     </div>
     <p id="start">Please start the video.</p>
@@ -80,9 +83,9 @@ be "hidden", for as long as it can be.
             player = new YT.Player('player', {
                 height: document.documentElement.clientHeight - 50,
                 width: document.documentElement.clientWidth - 50,
-                videoId: 'XVK6rqecIpU',
+                videoId: 'rW8ElViFedE',
                 playerVars: {
-                    'playsinline': 1, 'autoplay': 1, 'controls': 0, 'playlist': "XVK6rqecIpU", 'loop': 1, 'fs': 0
+                    'playsinline': 1, 'autoplay': 1, 'controls': 0, 'playlist': "rW8ElViFedE", 'loop': 1, 'fs': 0
                 },
                 events: {
                     'onReady': onPlayerReady
@@ -116,7 +119,7 @@ be "hidden", for as long as it can be.
                 $("#start").fadeOut()
                 startText = true
             }
-            if (player.getCurrentTime() > 19 && !shown) {
+            if (player.getCurrentTime() > 2.8 && !shown) {
                 console.log("show")
                 $("#dimScreen").fadeIn()
                 shown = true
