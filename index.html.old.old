@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="nil.dev's site" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nullify.rest" />
+    <meta property="og:image" content="https://nullify.rest/img/thumb.jpg" />
+    <meta property="og:description" content="Goodbye, Me" />
+    <meta name="theme-color" content="#0557e6">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <style>
+        #dimScreen
+        {
+            position:fixed;
+            padding:0;
+            margin:0;
+
+            top:0;
+            left:0;
+
+            width: 100%;
+            height: 100%;
+            background:rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        #about {
+            position: fixed;
+            width: 40%;
+            text-align: center;
+            top: 25%;
+            left: 50%;
+            padding: 20px;
+            transform: translate(-50%, 0);
+        }
+        p, span {
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+        }
+        a {
+            color: rgb(38, 77, 248);
+            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+        }
+        #name {
+            color: rgb(38, 77, 248);
+        }
+    </style>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+</head>
+
+<body style="background-color: black;">
+    <div id="player"></div>
+    <div id="dimScreen" style="display: none;">
+        <div id="about">
+            <img id="aboutimg" src="https://cataas.com/cat" style="border-radius: 5%; max-width: 350px; max-height: 350px;"><br>
+            <p>I am <span id="name" style="cursor: grab;">@nil.dev</span> - signing off.<br>
+Thanks for all the memories, guys! I really do appreciate you all.<br>
+No proper leave note as I'm too tired to make one.<br>
+I doubt you'll hear from me any time soon. Maybe never.<br>
+If you found this, please do not share it around. Let it<br>
+be "hidden", for as long as it can be.
+        </div>
+    </div>
+    <p id="start">Please start the video.</p>
+
+    <script>
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: document.documentElement.clientHeight - 50,
+                width: document.documentElement.clientWidth - 50,
+                videoId: 'XVK6rqecIpU',
+                playerVars: {
+                    'playsinline': 1, 'autoplay': 1, 'controls': 0, 'playlist': "XVK6rqecIpU", 'loop': 1, 'fs': 0
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+        $("#name").draggable({
+            cursor: "grabbing"
+        })
+        var loadingimg = true
+        $("#aboutimg").click(() => {
+            if (!loadingimg) {
+                $("#aboutimg").attr("src", "https://cataas.com/cat?" + Date.now())
+                $("#aboutimg").css("cursor", "wait")
+                loadingimg = true
+            } else {
+                $("#aboutimg").css("cursor", "not-allowed")
+            }
+        })
+        $("#aboutimg").on("load", () => {
+            $("#aboutimg").css("cursor", "pointer")
+            loadingimg = false
+        })
+        function onPlayerReady() {
+            console.log("ready to play")
+        }
+        var shown = false;
+        var startText = false;
+        var chkInt = setInterval(() => {
+            if (player.getCurrentTime() > 0.1 && !startText) {
+                $("#start").fadeOut()
+                startText = true
+            }
+            if (player.getCurrentTime() > 19 && !shown) {
+                console.log("show")
+                $("#dimScreen").fadeIn()
+                shown = true
+            }
+            if (shown && startText) {
+                clearInterval(chkInt)
+                console.log("Bye")
+            }
+        }, 50)
+    </script>
+</body>
+
+</html>
